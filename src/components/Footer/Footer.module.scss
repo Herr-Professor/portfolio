@@ -1,0 +1,72 @@
+@import '../../styles/contants.scss';
+
+.wrapper{
+    background: white;
+    .container{
+        gap: 2rem;
+        @media (max-width: $sm) {
+            flex-direction: column;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+        .left{
+            flex: 3;
+            >*{
+                display: block;
+            }
+            >:nth-child(2)
+            {
+                margin-top: 3rem;
+
+                a{
+                    text-decoration: underline;
+                    color: orange;
+                }
+            }
+        }
+
+
+        .right{
+            flex: 1;
+            .info{
+                margin-bottom: 1rem;
+                >*{
+                    display: block;
+                }
+            }
+            .menu{
+                @media (max-width: $sm) {
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                list-style: none;
+                li{
+                    cursor: pointer;
+                    &:hover{
+                        color: $secondary
+                    }
+                }
+            }
+                    .showCase{
+            width: 100%;
+            gap: 1.5rem;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            >img{
+
+                @media (max-width: $sm) {
+                    width: 100%;
+                }
+                border-radius: 20px;
+                max-width: 25rem;
+                max-height: 18rem;
+                box-shadow: 0px 21px 13px rgba(0, 0, 0, 13%);
+                cursor: pointer;
+            }
+        }
+        }
+    }
+}
