@@ -4,6 +4,11 @@ import css from "./Projects.module.scss";
 import { fadeIn, staggerChildren, textVariant } from "../../utils/motion";
 import { FaLink, FaGithub } from "react-icons/fa";
 
+const mobileVariant = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
+
 const projectData = [
   {
     title: "Resume Optimizer",
@@ -35,7 +40,7 @@ const projectData = [
   {
     title: "Custom C++ Memory Allocator",
     description: "High-performance, thread-safe memory allocator with multiple strategies, built to optimize C++ application throughput.",
-    image: "./memoryalloc.jpg",
+    image: "./memalloc.jpg",
     techStack: ["C++", "Memory Management", "Performance"],
     liveUrl: null,
     githubUrl: "https://github.com/Herr-Professor/memory_allocator",
@@ -72,13 +77,20 @@ const Projects = () => { // Renamed component
             </motion.div>
 
             <div className={`flexCenter ${css.projectsGrid}`}>
-                {projectData.map((project, i) => (
-                    <motion.div
-                        variants={fadeIn("up", "tween", (i * 0.1) + 0.5, 0.6)}
-                        className={css.projectCard}
-                        key={project.title}
-                    >
-                        <img src={project.image} alt={`${project.title} screenshot`} className={css.projectImage} />
+    {projectData.map((project, i) => (
+        <motion.div
+            variants={window.innerWidth <= 768 ? mobileVariant : fadeIn("up", "tween", (i * 0.1) + 0.5, 0.6)}
+            className={css.projectCard}
+            key={project.title}
+        >
+            {/* Add priority and loading attributes to image */}
+            <img 
+                src={project.image} 
+                alt={`${project.title} screenshot`} 
+                className={css.projectImage}
+                loading="lazy"
+                decoding="async"
+            />
                         <div className={css.cardContent}>
                            <h3 className={css.projectTitle}>{project.title}</h3>
                            {project.status && <span className={css.projectStatus}>{project.status}</span>}
