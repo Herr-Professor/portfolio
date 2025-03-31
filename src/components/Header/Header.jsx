@@ -11,11 +11,17 @@ const Header = () => {
   const [menuOpened, setMenuOpened] = useState(false);
   const headerShadow = useHeaderShadow();
 
-  //to handle click outside of sidebar on mobile
   useOutsideAlerter({
     menuRef,
     setMenuOpened,
   });
+
+  const navLinks = [
+    { href: "#projects", label: "Projects" },
+    { href: "#articles", label: "Articles" },
+    { href: "#skills", label: "Skills" },
+    { href: "#work", label: "work" },
+  ];
 
   return (
     <motion.div
@@ -24,29 +30,42 @@ const Header = () => {
       whileInView="show"
       className={`bg-primary paddings ${css.wrapper}`}
       viewport={{ once: true, amount: 0.25 }}
-      style={{boxShadow: headerShadow}}
+      style={{ boxShadow: headerShadow }}
     >
       <div className={`innerWidth ${css.container} flexCenter`}>
-        <div className={css.name}>OGUNTOYE</div>
+        <a href="#" className={css.name}>OGUNTOYE</a>
+
+        {/* Navigation Menu */}
         <ul
           className={`flexCenter ${css.menu}`}
           ref={menuRef}
           style={getMenuStyles(menuOpened)}
         >
-          <li><a href="#experties">Services</a></li>
-          <li><a href="#work">Experience</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#people">My Skills</a></li>
-          <li className={`flexCenter ${css.phone}`}>
-            <p>+234 915342623</p>
-            <BiPhoneCall size={"40px"} />
+        
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <a href={link.href} onClick={() => setMenuOpened(false)}>
+                {link.label}
+              </a>
+            </li>
+          ))}
+
+          <li className={`flexCenter ${css.phone}`}>            
+            <a href="tel:+2347018500411" aria-label="Call Farouq Oguntoye">
+              <p>+234 701 850 0411</p>
+              <BiPhoneCall size={"40px"} />
+            </a>
           </li>
         </ul>
 
-        {/* for medium and small screens */}
+        {/* Mobile Menu Icon */}
         <div
           className={css.menuIcon}
           onClick={() => setMenuOpened((prev) => !prev)}
+          aria-label={menuOpened ? "Close menu" : "Open menu"}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setMenuOpened((prev) => !prev); }}
         >
           <BiMenuAltRight size={30} />
         </div>

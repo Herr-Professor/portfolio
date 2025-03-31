@@ -3,9 +3,15 @@ import { footerVariants, staggerChildren } from "../../utils/motion";
 import css from "./Footer.module.scss";
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLinkedin, faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faLinkedinIn, faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
+  const linkedinUrl = "https://www.linkedin.com/in/farouq-oguntoye-577b83195/";
+  const twitterUrl = "https://twitter.com/HeerProfessor";
+  const githubUrl = "https://github.com/Herr-Professor";
+  const email = "farouqoguntoye05@gmail.com";
+  const location = "Nigeria";
+
   return (
     <motion.section
       variants={staggerChildren}
@@ -23,21 +29,24 @@ const Footer = () => {
             Let's build the <br />
             future together.
           </span>
-          <span className="primaryText">
-            Start by <a href="mailto:farouqoguntoye05@gmail.com">saying Hello</a>
+          <span className={`primaryText ${css.contactAction}`}>
+            Start by <a href={`mailto:${email}`}>saying Hello</a>
           </span>
         </div>
 
         <div className={css.right}>
           <div className={css.info}>
-            <span className="secondaryText">Information</span>
-            <p>Ibadan, Nigeria</p>
+            <span className="secondaryText">Location</span>
+            <p>{location}</p>
           </div>
-          <div className={`flexCenter ${css.showCase}`}>
+
+          <div className={css.socialLinks}>
             <span className="secondaryText">Follow Me:</span>
-            <a href="https://www.linkedin.com/in/farouq-oguntoye-577b83195/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faLinkedin} /></a>
-            <a href="https://twitter.com/HeerProfessor" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faTwitter} /></a>
-            <a href="https://github.com/Herr-Professor" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faGithub} /></a>
+            <div className={css.iconsContainer}> 
+              <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FontAwesomeIcon icon={faLinkedinIn} /></a>
+              <a href={twitterUrl} target="_blank" rel="noopener noreferrer" aria-label="Twitter"><FontAwesomeIcon icon={faTwitter} /></a>
+              <a href={githubUrl} target="_blank" rel="noopener noreferrer" aria-label="GitHub"><FontAwesomeIcon icon={faGithub} /></a>
+            </div>
           </div>
         </div>
       </motion.div>
@@ -46,4 +55,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

@@ -1,0 +1,133 @@
+@import '../../styles/contants.scss';
+
+.wrapper {
+    background: white;
+}
+
+.container {
+    align-items: flex-start;
+    gap: 4rem;
+    flex-wrap: wrap;
+
+    >div {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .leftSide {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        .exp {
+            display: flex;
+            align-items: center;
+            border: 1px solid $secondary-white;
+            border-radius: 15px;
+            padding: 1.2rem;
+            gap: 1.5rem;
+            transition: all 200ms ease-out;
+            background-color: #fff;
+
+            &:hover {
+                cursor: default;
+                box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.07);
+                transform: translateY(-3px);
+            }
+
+            >:nth-child(1) {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 10px;
+                width: 45px;
+                height: 45px;
+                min-width: 45px;
+                border-radius: 10px;
+            }
+
+            >:nth-child(2) {
+                display: flex;
+                flex-direction: column;
+                gap: 0.3rem;
+
+                >:nth-child(1) {
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                }
+                
+                 >:nth-child(2) {
+                    font-size: 0.9rem;
+                    color: grey;
+                }
+            }
+        }
+    }
+
+    .rightSide {
+        @media (max-width: $md) {
+            text-align: center;
+            align-items: center;
+        }
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        
+        .primaryText {
+             margin-bottom: 0.5rem;
+        }
+
+        p.secondaryText {
+           line-height: 1.6;
+           max-width: 600px;
+           text-align: left;
+           @media (max-width: $md) {
+              text-align: center; 
+              max-width: 90%;
+           }
+        }
+
+        // --- Styles for Tools Section ---
+        .toolsSection {
+            margin-top: 2rem;
+            width: 100%;
+
+            .primaryTextSmall {
+                 font-size: 1.3rem;
+                 font-weight: 500;
+                 margin-bottom: 2rem;
+                 color: $primary;
+            }
+
+            .toolIconsContainer {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem 2.5rem;
+                padding: 0 1rem;
+            }
+
+            .toolIconItem {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+                color: $primary;
+                cursor: default;
+                transition: color 0.3s ease, transform 0.2s ease;
+
+                svg {
+                    transition: transform 0.2s ease;
+                }
+
+                &:hover {
+                  color: $secondary;
+                  svg {
+                      transform: scale(1.1);
+                  }
+                }
+            }
+        }
+    }
+}
